@@ -32,6 +32,7 @@ public final class FormatPreferences {
 	private final boolean generateFinalParams;
 	private final boolean generateConstructorProperties;
 	private final boolean generateSuppressWarnings, danceAroundIdeChecks, generateDelombokComment, javaLangAsFqn;
+	private final boolean withoutUnicodeEscape;
 	final Map<String, String> rawMap;
 	
 	static final Map<String, String> KEYS;
@@ -46,6 +47,7 @@ public final class FormatPreferences {
 		keys.put("danceAroundIdeChecks", "Either 'generate' or 'skip'. generate means: Lombok will intentionally obfuscate some generated code to avoid IDE warnings. Default: 'generate'");
 		keys.put("generateDelombokComment", "Either 'generate' or 'skip'. generate means: Any file modified by delombok will have a comment stating this at the top. Default: 'generate'");
 		keys.put("javaLangAsFQN", "Either 'generate' or 'skip'. generate means: Any generated reference to java.lang classes are prefixed with `java.lang.`. Default: 'generate'");
+		keys.put("withoutUnicodeEscape", "Either 'true' or 'false'. true means: Any generated codes will not be unicode escape. Default: 'false'");
 		KEYS = Collections.unmodifiableMap(keys);
 	}
 	
@@ -85,6 +87,7 @@ public final class FormatPreferences {
 		this.danceAroundIdeChecks = unrollBoolean(preferences, "danceAroundIdeChecks", "generate", "skip", true);
 		this.generateDelombokComment = unrollBoolean(preferences, "generateDelombokComment", "generate", "skip", true);
 		this.javaLangAsFqn = unrollBoolean(preferences, "javaLangAsFQN", "generate", "skip", true);
+		this.withoutUnicodeEscape = unrollBoolean(preferences, "withoutUnicodeEscape", "true", "false", false);
 	}
 	
 	private static boolean unrollBoolean(Map<String, String> preferences, String name, String trueStr, String falseStr, boolean defaultVal) {
@@ -130,5 +133,9 @@ public final class FormatPreferences {
 	
 	public boolean generateConstructorProperties() {
 		return generateConstructorProperties;
+	}
+	
+	public boolean isWithoutUnicodeEscape() {
+		return withoutUnicodeEscape;
 	}
 }

@@ -352,7 +352,11 @@ public class PrettyCommentsPrinter extends JCTree.Visitor {
     	}
     	needsSpace = false;
         
-    	out.write(Convert.escapeUnicode(s.toString()));
+        if (formatPreferences.isWithoutUnicodeEscape()) {
+    		out.write(s.toString());
+    	} else {
+    		out.write(Convert.escapeUnicode(s.toString()));
+    	}
        
         onNewLine = false;
         aligned = false;
