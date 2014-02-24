@@ -51,32 +51,5 @@
 			<url>file://${project.build.directory}/mvn-repo</url>
 		</repository>
 	</distributionManagement>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>com.github.github</groupId>
-					<artifactId>site-maven-plugin</artifactId>
-					<version>0.9</version>
-					<configuration>
-						<message>Maven artifacts for ${project.version}</message>
-						<noJekyll>true</noJekyll>
-						<outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
-						<branch>refs/heads/mvn-repo</branch>
-						<includes><include>**/*</include></includes>
-						<server>github</server>
-						<repositoryName>lombok</repositoryName>
-						<repositoryOwner>emalock3</repositoryOwner>
-					</configuration>
-					<executions>
-						<execution>
-							<goals>
-								<goal>site</goal>
-							</goals>
-							<phase>deploy</phase>
-						</execution>
-					</executions>
-			</plugin>
-		</plugins>
-	</build>
 </project>
 
